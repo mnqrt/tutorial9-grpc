@@ -1,17 +1,17 @@
-syntax = "proto3"
+syntax = "proto3";
 
-package = services
+package services;
 
 service PaymentService{
     rpc ProcessPayment(PaymentRequest) returns (PaymentResponse);
 }
 
 service TransactionService{
-    rpc GetTransactionHistory(TransactionRequest) returns (TransactionResponse);
+    rpc GetTransactionHistory(TransactionRequest) returns (stream TransactionResponse);
 }
 
 service ChatService{
-    rpc Chat(stream ChatRequest) returns (stream ChatMessage);
+    rpc Chat(stream ChatMessage) returns (stream ChatMessage);
 }
 
 message PaymentRequest{
@@ -20,7 +20,7 @@ message PaymentRequest{
 }
 
 message PaymentResponse{
-    boolean success = 1;
+    bool success = 1;
 }
 
 message TransactionRequest{
